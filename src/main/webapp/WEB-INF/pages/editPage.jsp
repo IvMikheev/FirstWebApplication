@@ -21,13 +21,13 @@
         <input type="hidden" name="id" value="${film.id}">
     </c:if>
     <label for="title">Title</label>
-    <input type="text" name="title" id="title">
+    <input type="text" name="title" id="title" value="${film.title}">
     <label for="year">Year</label>
-    <input type="text" name="year" id="year">
+    <input type="text" name="year" id="year" value="${film.year}">
     <label for="genre">Genre</label>
-    <input type="text" name="genre" id="genre">
+    <input type="text" name="genre" id="genre" value="${film.genre}">
     <label for="watched">Watched</label>
-    <input type="text" name="watched" id="watched">
+    <input type="text" name="watched" id="watched" value="${film.watched}">
     <c:if test="${empty film.title}">
         <input type="submit" value="Add new film">
     </c:if>
