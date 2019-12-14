@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 public class FilmController {
     private FilmService filmService;
@@ -23,19 +21,17 @@ public class FilmController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView allFilms() {
-        List<Film> films = filmService.allFilms();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("films");
-        modelAndView.addObject("filmsList", films);
+        modelAndView.addObject("filmsList", filmService.allFilms());
         return modelAndView;
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView editPage(@PathVariable("id") int id) {
-        Film film = filmService.getById(id);
+    public ModelAndView editPage(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
-        modelAndView.addObject("film", film);
+        modelAndView.addObject("film", filmService.getById(id));
         return modelAndView;
     }
 
@@ -55,7 +51,7 @@ public class FilmController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addFilm(@ModelAttribute("film") Film film) {
+    public ModelAndView addFilm(@ModelAttribute Film film) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         filmService.add(film);
@@ -63,7 +59,7 @@ public class FilmController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteFilm(@PathVariable("id") int id) {
+    public ModelAndView deleteFilm(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         filmService.delete(filmService.getById(id));
