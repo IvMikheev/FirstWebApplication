@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FilmDAO {
 
-    List<Film> allFilms();
+    List<Film> allFilms(int page);
 
     void add(Film film);
 
@@ -15,4 +15,6 @@ public interface FilmDAO {
     void edit(Film film);
 
     Film getById(int id);
+
+    int filmsCount();
 }
